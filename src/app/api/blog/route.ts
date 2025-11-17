@@ -127,42 +127,13 @@ export async function POST(request: NextRequest) {
 
     const posts = await readBlogPosts();
 
-    // slug 생성 (제목 기반 + 타임스탬프) - 영문만 사용
-    const slug = body.slug || (() => {
-      // 한글 제목을 영문 슬러그로 변환
-      const koreanToEnglishMap: { [key: string]: string } = {
-        '소아과': 'pediatrics',
-        '가을철': 'autumn',
-        '아이': 'children',
-        '독감': 'flu',
-        '예방': 'prevention',
-        '가이드': 'guide',
-        '안과': 'ophthalmology',
-        '농내장': 'glaucoma',
-        '관리': 'management',
-        '마케팅': 'marketing',
-        '병원': 'hospital',
-        '전문': 'expert',
-        '완벽': 'perfect',
-        '알려주는': 'tips',
-        '관한': 'about',
-        '주제': 'topic'
-      };
-
-      let englishSlug = body.title;
-      // 한글 키워드를 영문으로 변환
-      Object.entries(koreanToEnglishMap).forEach(([korean, english]) => {
-        englishSlug = englishSlug.replace(new RegExp(korean, 'g'), english);
-      });
-
-      // 남은 문자들 처리 (영문, 숫자, 공백만 남기기)
-      return englishSlug
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '') || `post-${Date.now()}`;
-    })() + `--${Date.now()}`;
+      // slug 생성 (제목 기반 + 타임스탬프) - 영문만 사용
+    const slug = body.slug || `${body.title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, '') // 영문, 숫자, 공백만 남기기
+      .replace(/\s+/g, '-') // 공백을 하이픈으로
+      .replace(/-+/g, '-') // 중복 하이픈 제거
+      .replace(/^-|-$/g, '')}--${Date.now()}`;
 
     // 새 블로그 포스트 생성
     const newPost: BlogPost = {
