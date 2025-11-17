@@ -3,15 +3,30 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Menu, X, Type } from "lucide-react";
+import { useFont } from "@/contexts/FontContext";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { font, setFont } = useFont();
 
   const menuItems = [
     { label: "홈", href: "/" },
     { label: "블로그", href: "/blog" },
     { label: "상담 신청", href: "/consultation" },
+  ];
+
+  const fontOptions = [
+    { value: "pretendard", label: "Pretendard" },
+    { value: "gmarket", label: "G마켓산스" },
+    { value: "paperlogy", label: "Paperlogy" },
   ];
 
   return (
@@ -26,7 +41,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
@@ -36,6 +51,24 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+
+            {/* Font Selector */}
+            <div className="flex items-center gap-2">
+              <Type className="h-4 w-4 text-gray-500" />
+              <Select value={font} onValueChange={(value) => setFont(value as any)}>
+                <SelectTrigger className="w-[140px] h-9 text-sm">
+                  <SelectValue placeholder="폰트 선택" />
+                </SelectTrigger>
+                <SelectContent>
+                  {fontOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
             <Link href="/consultation">
               <Button className="bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300">
                 무료 상담
@@ -70,6 +103,27 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+
+            {/* Font Selector Mobile */}
+            <div className="py-3">
+              <div className="flex items-center gap-2 mb-2">
+                <Type className="h-4 w-4 text-gray-500" />
+                <span className="text-sm font-medium text-gray-700">폰트 선택</span>
+              </div>
+              <Select value={font} onValueChange={(value) => setFont(value as any)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="폰트 선택" />
+                </SelectTrigger>
+                <SelectContent>
+                  {fontOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
             <Link href="/consultation" onClick={() => setIsMenuOpen(false)}>
               <Button className="w-full bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300">
                 무료 상담

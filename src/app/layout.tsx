@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { FontProvider } from "@/contexts/FontContext";
 import Navbar from "@/components/Navbar";
 
 const inter = Inter({
@@ -62,8 +63,10 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${notoSansKr.variable} ${pretended.variable} font-sans antialiased`}>
         <ThemeProvider defaultTheme="light" switchable={false}>
-          <Navbar />
-          {children}
+          <FontProvider>
+            <Navbar />
+            {children}
+          </FontProvider>
         </ThemeProvider>
       </body>
     </html>

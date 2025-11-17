@@ -18,10 +18,23 @@ const config: Config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          50: "var(--color-primary-50)",
+          100: "var(--color-primary-100)",
+          200: "var(--color-primary-200)",
+          300: "var(--color-primary-300)",
+          400: "var(--color-primary-400)",
+          500: "var(--color-primary-500)",
+          600: "var(--color-primary-600)",
+          700: "var(--color-primary-700)",
+          800: "var(--color-primary-800)",
+          900: "var(--color-primary-900)",
+          950: "var(--color-primary-950)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          500: "var(--color-secondary-500)",
+          600: "var(--color-secondary-600)",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -34,6 +47,8 @@ const config: Config = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          500: "var(--color-accent-500)",
+          600: "var(--color-accent-600)",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -43,12 +58,18 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Brand colors
-        brand: {
-          "deep-blue": "hsl(var(--brand-deep-blue))",
-          cerulean: "hsl(var(--brand-cerulean))",
-          amber: "hsl(var(--brand-amber))",
-          turquoise: "hsl(var(--brand-turquoise))",
+        // Neutral grays for professional design
+        gray: {
+          50: "var(--color-gray-50)",
+          100: "var(--color-gray-100)",
+          200: "var(--color-gray-200)",
+          300: "var(--color-gray-300)",
+          400: "var(--color-gray-400)",
+          500: "var(--color-gray-500)",
+          600: "var(--color-gray-600)",
+          700: "var(--color-gray-700)",
+          800: "var(--color-gray-800)",
+          900: "var(--color-gray-900)",
         },
       },
       fontSize: {

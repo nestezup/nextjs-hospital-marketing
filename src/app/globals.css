@@ -1,80 +1,198 @@
 @import "tailwindcss";
 
+/* Custom Korean Fonts */
+/* GMarketSans - 제목용 */
+@font-face {
+  font-family: 'GMarketSans';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GMarketSans';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GMarketSans';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Paperlogy - 본문 및 제목용 */
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+
 @theme {
-  /* 병원 마케팅 브랜드 컬러 */
-  --color-brand-deep-blue: #0A2463;
-  --color-brand-cerulean: #3E92CC;
-  --color-brand-amber: #F18F01;
-  --color-brand-turquoise: #4ECDC4;
+  /* 새로운 디자인 시스템 - Professional Medical Colors */
+  /* Primary - Medical Blue */
+  --color-primary-50: #EFF6FF;
+  --color-primary-100: #DBEAFE;
+  --color-primary-200: #BFDBFE;
+  --color-primary-300: #93C5FD;
+  --color-primary-400: #60A5FA;
+  --color-primary-500: #3B82F6;
+  --color-primary-600: #2563EB;
+  --color-primary-700: #1D4ED8;
+  --color-primary-800: #1E40AF;
+  --color-primary-900: #1E3A8A;
+  --color-primary-950: #172554;
+
+  /* Secondary - Trust Green */
+  --color-secondary-500: #10B981;
+  --color-secondary-600: #059669;
+
+  /* Accent - Warm Orange */
+  --color-accent-500: #F59E0B;
+  --color-accent-600: #D97706;
+
+  /* Neutral Gray */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
 }
 
 @layer base {
   :root {
-    /* 병원 마케팅 브랜드 컬러 - HSL 형식 */
-    --brand-deep-blue: 222 80% 22%;      /* #0A2463 */
-    --brand-cerulean: 203 59% 57%;       /* #3E92CC */
-    --brand-amber: 33 99% 47%;           /* #F18F01 */
-    --brand-turquoise: 177 53% 62%;      /* #4ECDC4 */
+    /* Light Mode - Professional & Clean */
+    --background: 0 0% 100%;             /* Pure White */
+    --foreground: 210 11% 15%;           /* Dark Gray (gray-900) */
 
-    --background: 0 0% 100%;
-    --foreground: 222 80% 22%;           /* Deep Blue for text */
-
-    --card: 0 0% 100%;
-    --card-foreground: 222 80% 22%;
+    --card: 0 0% 100%;                   /* White */
+    --card-foreground: 210 11% 15%;      /* Dark Gray */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 80% 22%;
+    --popover-foreground: 210 11% 15%;
 
-    --primary: 222 80% 22%;              /* Deep Blue */
-    --primary-foreground: 210 40% 98%;
+    /* Primary Blue - Professional Medical Color */
+    --primary: 217 91% 60%;              /* Blue-500 #3B82F6 */
+    --primary-foreground: 0 0% 100%;     /* White text on primary */
 
-    --secondary: 203 59% 57%;            /* Cerulean Blue */
+    /* Secondary Green - Trust & Success */
+    --secondary: 160 84% 39%;            /* Green-600 #059669 */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215 20% 50%;
+    /* Muted - Subtle backgrounds */
+    --muted: 220 14% 96%;                /* Gray-100 */
+    --muted-foreground: 215 16% 47%;     /* Gray-600 */
 
-    --accent: 33 99% 47%;                /* Amber */
+    /* Accent - Call to Action */
+    --accent: 38 92% 50%;                /* Orange-500 #F59E0B */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive - Errors */
+    --destructive: 0 84% 60%;            /* Red-500 */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222 80% 22%;
+    /* Borders & Inputs */
+    --border: 214 32% 91%;               /* Gray-200 */
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;                 /* Primary blue for focus */
 
-    --radius: 0.75rem;                   /* Slightly larger radius */
+    /* Border Radius */
+    --radius: 0.75rem;                   /* 12px - Modern rounded corners */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* Dark Mode (Optional - Light mode first) */
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 160 84% 39%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
   }
 }
 
@@ -82,54 +200,130 @@
   * {
     border-color: hsl(var(--border));
   }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
     font-size: 16px;
-    line-height: 1.6;
-    font-family: var(--font-pretended), "Pretendard", system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Typography improvements */
+  /* Typography System - Clear Hierarchy */
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.02em;
     line-height: 1.2;
-    color: hsl(var(--foreground));
   }
 
-  h1 {
-    font-size: 3rem;        /* 48px */
+  /* Display - Landing pages */
+  .text-display-2xl {
+    font-size: 4.5rem;    /* 72px */
+    line-height: 1.1;
   }
 
-  h2 {
-    font-size: 2.25rem;     /* 36px */
+  .text-display-xl {
+    font-size: 3.75rem;   /* 60px */
+    line-height: 1.1;
   }
 
-  h3 {
-    font-size: 1.875rem;    /* 30px */
+  .text-display-lg {
+    font-size: 3rem;      /* 48px */
+    line-height: 1.2;
   }
 
-  h4 {
-    font-size: 1.5rem;      /* 24px */
+  /* Headings - Sections */
+  h1, .text-h1 {
+    font-size: 2.25rem;   /* 36px */
+    line-height: 1.2;
   }
 
+  h2, .text-h2 {
+    font-size: 1.875rem;  /* 30px */
+    line-height: 1.3;
+  }
+
+  h3, .text-h3 {
+    font-size: 1.5rem;    /* 24px */
+    line-height: 1.4;
+  }
+
+  h4, .text-h4 {
+    font-size: 1.25rem;   /* 20px */
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  h5, .text-h5 {
+    font-size: 1.125rem;  /* 18px */
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  /* Body Text */
   p {
-    font-size: 1.0625rem;   /* 17px */
+    color: var(--color-gray-700);
+    font-size: 1rem;      /* 16px */
     line-height: 1.7;
   }
 
-  /* Mobile responsive typography */
+  .text-body-xl {
+    font-size: 1.25rem;   /* 20px */
+    line-height: 1.7;
+  }
+
+  .text-body-lg {
+    font-size: 1.125rem;  /* 18px */
+    line-height: 1.7;
+  }
+
+  .text-body-sm {
+    font-size: 0.875rem;  /* 14px */
+    line-height: 1.6;
+  }
+
+  .text-body-xs {
+    font-size: 0.75rem;   /* 12px */
+    line-height: 1.5;
+  }
+
+  /* Links */
+  a {
+    color: var(--color-primary-600);
+    transition: color 200ms ease-in-out;
+  }
+
+  a:hover {
+    color: var(--color-primary-700);
+  }
+
+  /* Mobile Responsive Typography */
   @media (max-width: 768px) {
-    h1 {
-      font-size: 2.25rem;   /* 36px */
+    .text-display-2xl {
+      font-size: 3rem;    /* 48px */
     }
 
-    h2 {
-      font-size: 1.875rem;  /* 30px */
+    .text-display-xl {
+      font-size: 2.5rem;  /* 40px */
     }
 
-    h3 {
-      font-size: 1.5rem;    /* 24px */
+    .text-display-lg {
+      font-size: 2.25rem; /* 36px */
+    }
+
+    h1, .text-h1 {
+      font-size: 1.875rem; /* 30px */
+    }
+
+    h2, .text-h2 {
+      font-size: 1.5rem;   /* 24px */
+    }
+
+    h3, .text-h3 {
+      font-size: 1.25rem;  /* 20px */
     }
   }
 }
@@ -259,5 +453,44 @@
   .prose th {
     background: hsl(var(--muted));
     font-weight: 600;
+  }
+
+  /* Font Family Utilities */
+  .font-pretendard {
+    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+  }
+
+  .font-gmarket {
+    font-family: 'GMarketSans', -apple-system, sans-serif;
+  }
+
+  .font-paperlogy {
+    font-family: 'Paperlogy', -apple-system, sans-serif;
+  }
+
+  /* Font Family Applied to Body */
+  body.font-pretendard {
+    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  }
+
+  body.font-gmarket,
+  body.font-gmarket h1,
+  body.font-gmarket h2,
+  body.font-gmarket h3,
+  body.font-gmarket h4,
+  body.font-gmarket h5,
+  body.font-gmarket h6 {
+    font-family: 'GMarketSans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body.font-paperlogy,
+  body.font-paperlogy h1,
+  body.font-paperlogy h2,
+  body.font-paperlogy h3,
+  body.font-paperlogy h4,
+  body.font-paperlogy h5,
+  body.font-paperlogy h6,
+  body.font-paperlogy p {
+    font-family: 'Paperlogy', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
