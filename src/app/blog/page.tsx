@@ -40,14 +40,11 @@ export default async function BlogPage({
   return (
     <div className="min-h-screen bg-background pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-deep-blue/10 via-brand-cerulean/5 to-background py-20">
+      <section className="bg-gradient-to-br from-primary/10 via-secondary/5 to-background py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              병원 마케팅{" "}
-              <span className="bg-gradient-to-r from-brand-cerulean to-brand-turquoise bg-clip-text text-transparent">
-                인사이트
-              </span>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
+              병원 마케팅 인사이트
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               20년 경력의 전문가가 전하는 병원 마케팅 노하우와 성공 사례
@@ -64,8 +61,8 @@ export default async function BlogPage({
               <Badge
                 className={`px-4 py-2 cursor-pointer transition-all duration-300 ${
                   !category
-                    ? "bg-gradient-to-r from-brand-cerulean to-brand-turquoise text-white shadow-md"
-                    : "bg-transparent border-2 border-brand-cerulean text-brand-cerulean hover:bg-brand-cerulean/10"
+                    ? "bg-gray-800 text-white shadow-md"
+                    : "bg-transparent border-2 border-gray-800 text-gray-800 hover:bg-gray-100"
                 }`}
               >
                 전체
@@ -76,8 +73,8 @@ export default async function BlogPage({
                 <Badge
                   className={`px-4 py-2 cursor-pointer transition-all duration-300 ${
                     category === cat.slug
-                      ? "bg-gradient-to-r from-brand-cerulean to-brand-turquoise text-white shadow-md"
-                      : "bg-transparent border-2 border-brand-cerulean text-brand-cerulean hover:bg-brand-cerulean/10"
+                      ? "bg-gray-800 text-white shadow-md"
+                      : "bg-transparent border-2 border-gray-800 text-gray-800 hover:bg-gray-100"
                   }`}
                 >
                   {cat.name}
@@ -99,19 +96,20 @@ export default async function BlogPage({
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {posts.map((post) => (
-                  <Card
-                    key={post.slug}
-                    className="border-2 border-transparent hover:border-brand-cerulean hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
-                  >
+                  <Link href={`/blog/${post.slug}`}>
+                    <Card
+                      key={post.slug}
+                      className="border-2 border-transparent hover:border-primary-600 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col cursor-pointer"
+                    >
                     <CardHeader>
                       <div className="flex items-center gap-2 mb-3">
-                        <Badge className="bg-brand-cerulean text-white hover:bg-brand-cerulean/90">{post.category}</Badge>
+                        <Badge className="bg-gray-800 text-white hover:bg-gray-800/90">{post.category}</Badge>
                         <div className="flex items-center text-sm text-muted-foreground">
                           <Calendar className="h-3 w-3 mr-1" />
                           {new Date(post.publishedAt).toLocaleDateString("ko-KR")}
                         </div>
                       </div>
-                      <CardTitle className="text-xl leading-tight line-clamp-2 text-brand-deep-blue hover:text-brand-cerulean transition-colors">
+                      <CardTitle className="text-xl leading-tight line-clamp-2 text-gray-900 hover:text-gray-700 transition-colors">
                         {post.title}
                       </CardTitle>
                       <CardDescription className="line-clamp-3">
@@ -125,14 +123,13 @@ export default async function BlogPage({
                       </div>
                     </CardContent>
                     <CardFooter>
-                      <Link href={`/blog/${post.slug}`} className="w-full">
                         <Button variant="outline" className="w-full group">
                           자세히 보기
                           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                      </Link>
                     </CardFooter>
                   </Card>
+                  </Link>
                 ))}
               </div>
 
@@ -185,17 +182,17 @@ export default async function BlogPage({
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-brand-deep-blue/10 via-brand-cerulean/10 to-brand-turquoise/10">
+      <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-brand-deep-blue to-brand-cerulean bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
               병원 마케팅에 대해 더 궁금하신가요?
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               전문가와 함께 병원에 맞는 마케팅 전략을 수립하세요
             </p>
             <Link href="/consultation">
-              <Button size="lg" className="text-lg text-white font-bold px-10 py-7 bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise shadow-2xl hover:shadow-brand-cerulean/50 hover:scale-105 transition-all duration-300">
+              <Button size="lg" className="text-lg font-bold px-10 py-7">
                 무료 상담 신청하기
                 <ArrowRight className="ml-2 h-6 w-6" />
               </Button>

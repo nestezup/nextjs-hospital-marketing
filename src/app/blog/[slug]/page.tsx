@@ -192,7 +192,7 @@ export default async function BlogPostPage({ params }: Props) {
               전문가와 함께 병원에 맞는 맞춤형 마케팅 전략을 수립하세요
             </p>
             <Link href="/consultation">
-              <Button size="lg" className="text-lg text-white font-bold px-10 py-7 bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise shadow-2xl hover:shadow-brand-cerulean/50 hover:scale-105 transition-all duration-300">
+              <Button size="lg" className="text-lg text-white font-bold px-10 py-7 bg-primary-600 hover:bg-primary-700 shadow-2xl hover:shadow-primary-600/50 hover:scale-105 transition-all duration-300">
                 무료 상담 신청하기
               </Button>
             </Link>
