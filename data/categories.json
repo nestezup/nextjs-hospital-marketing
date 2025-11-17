@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "안과",
+      "slug": "ophthalmology",
+      "description": "안과 진료과목 관련 마케팅 전략",
+      "icon": "👁️",
+      "displayOrder": 1
+    },
+    {
+      "id": 2,
+      "name": "치과",
+      "slug": "dentistry",
+      "description": "치과 진료과목 관련 마케팅 전략",
+      "icon": "🦷",
+      "displayOrder": 2
+    },
+    {
+      "id": 3,
+      "name": "피부과",
+      "slug": "dermatology",
+      "description": "피부과 진료과목 관련 마케팅 전략",
+      "icon": "✨",
+      "displayOrder": 3
+    },
+    {
+      "id": 4,
+      "name": "한의원",
+      "slug": "korean-medicine",
+      "description": "한의원 진료과목 관련 마케팅 전략",
+      "icon": "🌿",
+      "displayOrder": 4
+    },
+    {
+      "id": 5,
+      "name": "내과",
+      "slug": "internal-medicine",
+      "description": "내과 진료과목 관련 마케팅 전략",
+      "icon": "❤️",
+      "displayOrder": 5
+    },
+    {
+      "id": 6,
+      "name": "정형외과",
+      "slug": "orthopedics",
+      "description": "정형외과 진료과목 관련 마케팅 전략",
+      "icon": "🦴",
+      "displayOrder": 6
+    },
+    {
+      "id": 7,
+      "name": "마케팅",
+      "slug": "marketing",
+      "description": "병원 마케팅 일반 전략",
+      "icon": "🏥",
+      "displayOrder": 7
+    }
+  ]
+}
