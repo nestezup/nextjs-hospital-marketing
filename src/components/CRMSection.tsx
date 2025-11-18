@@ -134,29 +134,29 @@ export default function CRMSection() {
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between mb-1">
-                        <span>재방문율</span>
-                        <span className="font-bold">+35%</span>
+                        <span className="font-semibold">재방문율</span>
+                        <span className="font-bold text-blue-600">+35%</span>
                       </div>
-                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-primary rounded-full" style={{width: '85%'}}></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span>리뷰 수집률</span>
-                        <span className="font-bold">+50%</span>
-                      </div>
-                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-secondary rounded-full" style={{width: '90%'}}></div>
+                      <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-1000 ease-out" style={{width: '35%'}}></div>
                       </div>
                     </div>
                     <div>
                       <div className="flex justify-between mb-1">
-                        <span>환자 만족도</span>
-                        <span className="font-bold">+40%</span>
+                        <span className="font-semibold">리뷰 수집률</span>
+                        <span className="font-bold text-emerald-600">+50%</span>
                       </div>
-                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-accent rounded-full" style={{width: '80%'}}></div>
+                      <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full transition-all duration-1000 ease-out" style={{width: '50%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="font-semibold">환자 만족도</span>
+                        <span className="font-bold text-amber-600">+40%</span>
+                      </div>
+                      <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full transition-all duration-1000 ease-out" style={{width: '40%'}}></div>
                       </div>
                     </div>
                   </div>
