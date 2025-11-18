@@ -3,6 +3,7 @@
 import { Check } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function PricingSection() {
   const packages = [
@@ -71,88 +72,86 @@ export default function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-muted/30 via-brand-deep-blue/5 to-muted/30">
+    <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-brand-deep-blue via-brand-cerulean to-brand-turquoise bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 text-center">
             병원 상황에 맞는 맞춤 예산 설계
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             병원의 성장 단계와 목표에 따라 최적의 패키지를 선택하세요
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto">
           {packages.map((pkg, index) => (
             <Card
               key={index}
-              className={`relative transition-all duration-300 ${
+              className={`relative transition-all duration-300 bg-white ${
                 pkg.highlight
-                  ? "border-2 border-brand-cerulean shadow-2xl scale-105 bg-gradient-to-br from-brand-deep-blue/5 via-brand-cerulean/5 to-brand-turquoise/5"
-                  : "border-2 border-transparent hover:border-brand-deep-blue/30 hover:shadow-xl hover:-translate-y-1"
+                  ? "border-2 border-primary-500 shadow-2xl md:-translate-y-4"
+                  : "border border-gray-200 hover:border-primary-200 hover:shadow-lg hover:-translate-y-2"
               }`}
             >
               {pkg.highlight && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-brand-cerulean to-brand-turquoise text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
                   ⭐ 가장 인기
                 </div>
               )}
-              
+
               <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl font-bold mb-3 text-brand-deep-blue">{pkg.name}</CardTitle>
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-brand-cerulean to-brand-turquoise bg-clip-text text-transparent mb-3">{pkg.price}</div>
-                <CardDescription className="text-lg font-semibold text-brand-deep-blue/80">{pkg.subtitle}</CardDescription>
+                <CardTitle className="text-2xl font-bold mb-3 text-gray-900">{pkg.name}</CardTitle>
+                <div className="text-4xl md:text-5xl font-bold text-primary-600 mb-3">{pkg.price}</div>
+                <CardDescription className="text-lg font-semibold text-gray-700">{pkg.subtitle}</CardDescription>
                 {pkg.description && (
-                  <p className="text-sm text-muted-foreground mt-2">{pkg.description}</p>
+                  <p className="text-sm text-gray-500 mt-2">{pkg.description}</p>
                 )}
               </CardHeader>
 
               <CardContent className="space-y-6">
                 <div>
-                  <h4 className="font-semibold mb-3">포함 내용:</h4>
+                  <h4 className="font-semibold mb-3 text-gray-900">포함 내용:</h4>
                   <ul className="space-y-2">
                     {pkg.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-brand-cerulean flex-shrink-0 mt-0.5" />
-                        <span className="text-sm">{feature}</span>
+                        <Check className="h-5 w-5 text-primary-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-gray-700">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="pt-4 border-t">
-                  <h4 className="font-semibold mb-3">1년 계약 시 혜택:</h4>
+                <div className="pt-4 border-t border-gray-200">
+                  <h4 className="font-semibold mb-3 text-gray-900">1년 계약 시 혜택:</h4>
                   <ul className="space-y-2">
                     {pkg.benefits.map((benefit, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-brand-turquoise flex-shrink-0 mt-0.5" />
-                        <span className="text-sm font-medium">{benefit}</span>
+                        <Check className="h-5 w-5 text-secondary-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm font-medium text-gray-700">{benefit}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <Button
-                  className={`w-full mt-6 font-bold ${
-                    pkg.highlight
-                      ? "bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise text-white shadow-xl"
-                      : "border-2 border-brand-cerulean text-brand-cerulean hover:bg-brand-cerulean hover:text-white"
-                  }`}
-                  variant={pkg.highlight ? "default" : "outline"}
-                  size="lg"
-                  onClick={() => {
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  상담 신청하기
-                </Button>
+                <Link href="/consultation">
+                  <Button
+                    className={`w-full mt-6 font-bold transition-all duration-200 ${
+                      pkg.highlight
+                        ? "bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl"
+                        : "bg-white border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white"
+                    }`}
+                    size="lg"
+                  >
+                    상담 신청하기
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="text-center bg-muted/50 p-6 rounded-lg">
-          <p className="text-sm text-muted-foreground">
+        <div className="text-center bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+          <p className="text-sm text-gray-600">
             * 패키지 금액은 관리 대행비이며, 실제 광고비(네이버/카카오/구글 집행비)는 별도입니다.
           </p>
         </div>

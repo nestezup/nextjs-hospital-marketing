@@ -2,6 +2,7 @@
 
 import { Eye, Smile, Heart, Bone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function SpecialtyStrategySection() {
   const specialties = [
@@ -141,14 +142,13 @@ export default function SpecialtyStrategySection() {
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => {
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="mt-6 w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-            >
-              무료 상담 신청하기
-            </button>
+            <Link href="/consultation">
+              <button
+                className="mt-6 w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              >
+                무료 상담 신청하기
+              </button>
+            </Link>
             <p className="text-sm text-muted-foreground mt-4">
               📞 24시간 내 연락드립니다 | 💬 온라인 미팅 가능 (전국 어디서나)
             </p>

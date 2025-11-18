@@ -2,6 +2,7 @@
 
 import { FileSearch, FileText, FileCheck, Rocket, BarChart3 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function ContractProcessSection() {
   const steps = [
@@ -84,7 +85,7 @@ export default function ContractProcessSection() {
     <section id="contract-process" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             투명한 계약 프로세스
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -141,14 +142,13 @@ export default function ContractProcessSection() {
         </div>
 
         <div className="text-center mt-12">
-          <button
-            onClick={() => {
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold text-lg"
-          >
-            지금 무료 진단 신청하기
-          </button>
+          <Link href="/consultation">
+            <button
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold text-lg"
+            >
+              지금 무료 진단 신청하기
+            </button>
+          </Link>
         </div>
       </div>
     </section>

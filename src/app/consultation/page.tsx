@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import { useEffect, useRef } from 'react';
 import { submitConsultation, type ConsultationFormState } from '@/actions/consultation';
 import { Button } from '@/components/ui/button';
@@ -21,7 +21,7 @@ const consultationTypes = [
 ];
 
 export default function ConsultationPage() {
-  const [state, formAction] = useFormState(submitConsultation, null);
+  const [state, formAction] = useActionState(submitConsultation, null);
   const formRef = useRef<HTMLFormElement>(null);
 
   // 성공 시 폼 리셋

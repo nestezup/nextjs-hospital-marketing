@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart } from "lucide-react";
+import Link from "next/link";
 
 export default function LetterSection() {
   return (
@@ -84,14 +85,13 @@ export default function LetterSection() {
               </div>
 
               <div className="mt-12 text-center">
-                <button
-                  onClick={() => {
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold text-lg shadow-lg"
-                >
-                  함께 시작하기
-                </button>
+                <Link href="/consultation">
+                  <button
+                    className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold text-lg shadow-lg"
+                  >
+                    함께 시작하기
+                  </button>
+                </Link>
                 <p className="text-sm text-muted-foreground mt-4">
                   무료 상담으로 시작하세요. 부담 없이 이야기 나눠요.
                 </p>

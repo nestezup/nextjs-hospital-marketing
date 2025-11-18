@@ -24,9 +24,9 @@ export default function Navbar() {
   ];
 
   const fontOptions = [
-    { value: "pretendard", label: "Pretendard" },
-    { value: "gmarket", label: "G마켓산스" },
-    { value: "paperlogy", label: "Paperlogy" },
+    { value: "pretendard", label: "시안 1" },
+    { value: "gmarket", label: "시안 2" },
+    { value: "paperlogy", label: "시안 3" },
   ];
 
   return (
@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-brand-deep-blue to-brand-cerulean bg-clip-text text-transparent">
+            <div className="text-xl md:text-2xl font-bold text-primary-700">
               이엠마케팅 x 위딘비즈랩
             </div>
           </Link>
@@ -46,7 +46,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-base font-medium text-gray-700 hover:text-brand-cerulean transition-colors"
+                className="text-base font-medium text-gray-700 hover:text-primary-600 transition-colors cursor-pointer"
               >
                 {item.label}
               </Link>
@@ -54,14 +54,18 @@ export default function Navbar() {
 
             {/* Font Selector */}
             <div className="flex items-center gap-2">
-              <Type className="h-4 w-4 text-gray-500" />
+              <Type className="h-4 w-4 text-gray-700" />
               <Select value={font} onValueChange={(value) => setFont(value as any)}>
-                <SelectTrigger className="w-[140px] h-9 text-sm">
-                  <SelectValue placeholder="폰트 선택" />
+                <SelectTrigger className="w-[110px] h-9 text-sm font-medium border-gray-300 text-gray-900 hover:bg-gray-50">
+                  <SelectValue placeholder="시안 선택" />
                 </SelectTrigger>
                 <SelectContent>
                   {fontOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem
+                      key={option.value}
+                      value={option.value}
+                      className="font-medium"
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -70,7 +74,7 @@ export default function Navbar() {
             </div>
 
             <Link href="/consultation">
-              <Button className="bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300">
+              <Button className="bg-primary-600 hover:bg-primary-700 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-200">
                 무료 상담
               </Button>
             </Link>
@@ -97,7 +101,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-3 text-base font-medium text-gray-700 hover:text-brand-cerulean transition-colors"
+                className="block py-3 text-base font-medium text-gray-700 hover:text-primary-600 transition-colors cursor-pointer"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
@@ -107,16 +111,20 @@ export default function Navbar() {
             {/* Font Selector Mobile */}
             <div className="py-3">
               <div className="flex items-center gap-2 mb-2">
-                <Type className="h-4 w-4 text-gray-500" />
-                <span className="text-sm font-medium text-gray-700">폰트 선택</span>
+                <Type className="h-4 w-4 text-gray-700" />
+                <span className="text-sm font-medium text-gray-900">시안 선택</span>
               </div>
               <Select value={font} onValueChange={(value) => setFont(value as any)}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="폰트 선택" />
+                <SelectTrigger className="w-full font-medium border-gray-300 text-gray-900">
+                  <SelectValue placeholder="시안 선택" />
                 </SelectTrigger>
                 <SelectContent>
                   {fontOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem
+                      key={option.value}
+                      value={option.value}
+                      className="font-medium"
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -125,7 +133,7 @@ export default function Navbar() {
             </div>
 
             <Link href="/consultation" onClick={() => setIsMenuOpen(false)}>
-              <Button className="w-full bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300">
+              <Button className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-200">
                 무료 상담
               </Button>
             </Link>

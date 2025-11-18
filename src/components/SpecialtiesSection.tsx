@@ -1,49 +1,49 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Smile, Stethoscope, Bone } from "lucide-react";
+import Image from "next/image";
 
 const specialties = [
   {
     id: "ophthalmology",
-    icon: Eye,
+    image: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop&q=80",
     name: "안과",
     badge: "1차 핵심 타겟",
     description: "라식/라섹, 백내장, 노안",
     strategy: "시즌별 맞춤 전략",
-    color: "from-brand-deep-blue to-brand-cerulean",
+    color: "from-primary-600 to-primary-700",
   },
   {
     id: "dentistry",
-    icon: Smile,
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop&q=80",
     name: "치과",
     badge: "핵심 타겟",
     description: "임플란트, 교정, 심미",
     strategy: "지역 밀착 전략",
-    color: "from-brand-cerulean to-brand-turquoise",
+    color: "from-secondary-500 to-secondary-600",
   },
   {
     id: "internal-medicine",
-    icon: Stethoscope,
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&h=300&fit=crop&q=80",
     name: "내과",
     badge: "핵심 타겟",
     description: "건강검진, 만성질환",
     strategy: "신뢰 기반 마케팅",
-    color: "from-brand-turquoise to-brand-amber",
+    color: "from-primary-500 to-secondary-500",
   },
   {
     id: "orthopedics",
-    icon: Bone,
+    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=400&h=300&fit=crop&q=80",
     name: "정형외과",
     badge: "핵심 타겟",
     description: "척추, 관절, 스포츠 손상",
     strategy: "비수술 치료 강조",
-    color: "from-brand-amber to-brand-deep-blue",
+    color: "from-accent-500 to-accent-600",
   },
 ];
 
 export default function SpecialtiesSection() {
   return (
-    <section id="specialties" className="py-20 bg-gradient-to-b from-background to-muted/30">
+    <section id="specialties" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -56,26 +56,33 @@ export default function SpecialtiesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {specialties.map((specialty) => {
-            const Icon = specialty.icon;
             return (
               <Card
                 key={specialty.id}
-                className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 border-transparent hover:border-brand-cerulean"
+                className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200"
               >
+                <div className="relative w-full h-48 overflow-hidden">
+                  <Image
+                    src={specialty.image}
+                    alt={specialty.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${specialty.color} opacity-30 group-hover:opacity-40 transition-opacity`} />
+                </div>
                 <CardHeader>
-                  <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${specialty.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <Icon className="h-8 w-8 text-white" />
+                  <div className="flex items-center justify-between mb-2">
+                    <CardTitle className="text-2xl">{specialty.name}</CardTitle>
+                    <Badge variant="secondary" className="text-xs">
+                      {specialty.badge}
+                    </Badge>
                   </div>
-                  <CardTitle className="text-2xl">{specialty.name}</CardTitle>
-                  <Badge variant="secondary" className="w-fit">
-                    {specialty.badge}
-                  </Badge>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base mb-3">
                     {specialty.description}
                   </CardDescription>
-                  <p className="text-sm font-semibold text-primary">
+                  <p className="text-sm font-semibold text-primary-600">
                     {specialty.strategy}
                   </p>
                 </CardContent>
@@ -84,17 +91,17 @@ export default function SpecialtiesSection() {
           })}
         </div>
 
-        <Card className="bg-gradient-to-br from-brand-deep-blue/10 via-brand-cerulean/10 to-brand-turquoise/10 border-brand-cerulean/30 shadow-lg">
+        <Card className="bg-gradient-to-br from-primary-50 to-secondary-50 border-primary-200 shadow-lg">
           <CardHeader>
-            <CardTitle className="text-2xl md:text-3xl text-brand-deep-blue">진료과목별 특화 전략</CardTitle>
+            <CardTitle className="text-2xl md:text-3xl text-primary-900">진료과목별 특화 전략</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed">
               모든 진료과목이 같은 방식으로 마케팅되어서는 안 됩니다.
               <br />
               환자의 고민, 검색 패턴, 의사결정 과정이 모두 다르기 때문입니다.
               <br />
-              <strong className="text-brand-deep-blue font-bold">
+              <strong className="text-primary-800 font-bold">
                 우리는 진료과목별 특성을 정확히 이해하고, 각 과목에 최적화된
                 전략을 실행합니다.
               </strong>

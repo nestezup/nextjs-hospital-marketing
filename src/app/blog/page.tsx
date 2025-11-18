@@ -96,9 +96,8 @@ export default async function BlogPage({
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {posts.map((post) => (
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link key={post.slug} href={`/blog/${post.slug}`}>
                     <Card
-                      key={post.slug}
                       className="border-2 border-transparent hover:border-primary-600 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col cursor-pointer"
                     >
                     <CardHeader>

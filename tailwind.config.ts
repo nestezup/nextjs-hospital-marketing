@@ -50,6 +50,12 @@ const config: Config = {
           500: "var(--color-accent-500)",
           600: "var(--color-accent-600)",
         },
+        brand: {
+          "deep-blue": "#0A2463",
+          cerulean: "#3E92CC",
+          turquoise: "#4ECDC4",
+          amber: "#F18F01",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",

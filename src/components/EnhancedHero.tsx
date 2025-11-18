@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, TrendingUp, Users, Target } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function EnhancedHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -106,73 +107,92 @@ export default function EnhancedHero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* 3D Canvas Background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+      {/* Canvas Background - 3D 파티클 효과 */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
-        style={{ opacity: 0.6 }}
+        style={{ opacity: 0.8 }}
       />
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/20 to-slate-900/90" />
+      {/* Clean overlay - 파티클과 조화를 위한 오버레이 */}
+      <div className="absolute inset-0 bg-slate-900/40" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20">
-        <div className="max-w-5xl mx-auto text-center">
+        <motion.div
+          className="max-w-5xl mx-auto text-center"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.8, staggerChildren: 0.08 } },
+          }}
+        >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-in">
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: -10 }, visible: { opacity: 1, y: 0 } }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8"
+          >
             <Sparkles className="h-4 w-4 text-[#F18F01]" />
             <span className="text-sm font-medium text-white">
               20년 경력의 병원 마케팅 전문가
             </span>
-          </div>
+          </motion.div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up text-center" style={{fontSize: '52px'}}>
-            철학을 설계하고,
-            <br />
-            <span className="bg-gradient-to-r from-[#3E92CC] via-[#4ECDC4] to-[#F18F01] bg-clip-text text-transparent">
-              성과를 완성하는
-            </span>
-          </h1>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+              {/* <span className="text-6xl md:text-7xl text-[#3E92CC] font-serif">&ldquo;</span> */}
+              철학을 설계하고,
+              <br />
+              <span className="block mt-4 text-[#4ECDC4] font-bold">
+                성과로 완성합니다
+              </span>
+              {/* <span className="text-6xl md:text-7xl text-[#3E92CC] font-serif">&rdquo;</span> */}
+            </h1>
+          </motion.div>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-delay">
-            개원 초기부터 장기 운영까지,
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            “개원 초기부터 장기 운영까지,
             <br />
-            병원의 모든 성장 단계를 함께합니다
-          </p>
+            병원의 모든 성장 단계를 함께합니다”
+          </motion.p>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-              <div className="flex items-center justify-center mb-3">
-                <TrendingUp className="h-8 w-8 text-[#4ECDC4]" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-2">20+</div>
-              <div className="text-sm text-gray-300">년 경력</div>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-              <div className="flex items-center justify-center mb-3">
-                <Users className="h-8 w-8 text-[#3E92CC]" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-2">100+</div>
-              <div className="text-sm text-gray-300">성공 사례</div>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-              <div className="flex items-center justify-center mb-3">
-                <Target className="h-8 w-8 text-[#F18F01]" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-2">병의원 맞춤형 마케팅</div>
-              <div className="text-sm text-gray-300">AI 솔루션, 챗봇, 맞춤형 SaaS, CRM연동</div>
-            </div>
-          </div>
+          <motion.div
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto"
+          >
+            {[{
+              icon: <TrendingUp className="h-8 w-8 text-[#4ECDC4]" />, value: "20+", label: "년 경력"
+            }, {
+              icon: <Users className="h-8 w-8 text-[#3E92CC]" />, value: "100+", label: "성공 사례"
+            }, {
+              icon: <Target className="h-8 w-8 text-[#F18F01]" />, value: "병원, 의원 맞춤형", label: "AI 솔루션, 챗봇, 맞춤형 SaaS, CRM연동"
+            }].map((stat, idx) => (
+              <motion.div
+                key={stat.label}
+                variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
+                transition={{ delay: idx * 0.05 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105"
+              >
+                <div className="flex items-center justify-center mb-3">{stat.icon}</div>
+                <div className="text-3xl font-bold text-white mb-2 text-center">{stat.value}</div>
+                <div className="text-sm text-gray-300 text-center">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay-2">
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
             <Link href="/consultation">
               <Button size="lg" className="text-lg text-white font-bold px-10 py-7 bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise shadow-2xl hover:shadow-brand-cerulean/50 hover:scale-105 transition-all duration-300">
                 무료 상담 신청하기
@@ -184,14 +204,23 @@ export default function EnhancedHero() {
                 성공 사례 보기
               </Button>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Trust Badge */}
-          <div className="mt-16 text-gray-400 text-sm">
-            <p>밝은세상안과, 굿모닝성모안과, 김해 최안과, 연수김안과 등</p>
-            <p>우리 손에서 탄생한 병원들이 지역 내 성장을 이뤘습니다</p>
-          </div>
-        </div>
+          <motion.div
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+            className="mt-16 max-w-2xl mx-auto"
+          >
+            <blockquote className="border-l-4 border-[#4ECDC4] pl-6 text-gray-300 text-sm">
+              <p className="mb-2">
+                “밝은세상안과, 굿모닝성모안과, 김해 최안과, 연수김안과 등”
+              </p>
+              <p className="text-[#F18F01]">
+                — 우리 손에서 탄생한 병원들이 지역 내 성장을 이뤘습니다
+              </p>
+            </blockquote>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Scroll Indicator */}

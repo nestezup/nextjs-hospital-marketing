@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -51,7 +52,7 @@ export default function FAQSection() {
     <section id="faq" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">자주 묻는 질문 (FAQ)</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">자주 묻는 질문 (FAQ)</h2>
           <p className="text-lg text-muted-foreground">
             궁금하신 점을 확인하세요
           </p>
@@ -90,15 +91,14 @@ export default function FAQSection() {
           <p className="text-lg text-muted-foreground mb-6">
             더 궁금하신 점이 있으신가요?
           </p>
-          <Button
-            size="lg"
-            onClick={() => {
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="text-white font-bold px-10 bg-gradient-to-r from-brand-deep-blue to-brand-cerulean hover:from-brand-cerulean hover:to-brand-turquoise shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-          >
-            무료 상담 신청하기
-          </Button>
+          <Link href="/consultation">
+            <Button
+              size="lg"
+              className="bg-primary-600 hover:bg-primary-700 text-white font-bold px-10 shadow-lg hover:shadow-xl transition-all duration-200"
+            >
+              무료 상담 신청하기
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

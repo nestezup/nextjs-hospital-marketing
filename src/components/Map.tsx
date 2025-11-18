@@ -78,7 +78,7 @@
 
 /// <reference types="@types/google.maps" />
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePersistFn } from "@/hooks/usePersistFn";
 import { cn } from "@/lib/utils";
 
@@ -95,18 +95,26 @@ const FORGE_BASE_URL =
 const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
 
 function loadMapScript() {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
+    // Avoid injecting multiple times
+    const existing = document.querySelector<HTMLScriptElement>("script[data-google-maps]");
+    if (existing) {
+      if (existing.dataset.loaded === "true") return resolve(null);
+      existing.onload = () => resolve(null);
+      existing.onerror = () => reject(new Error("Failed to load Google Maps script"));
+      return;
+    }
+
     const script = document.createElement("script");
+    script.dataset.googleMaps = "true";
     script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
     script.async = true;
     script.crossOrigin = "anonymous";
     script.onload = () => {
+      script.dataset.loaded = "true";
       resolve(null);
-      script.remove(); // Clean up immediately
     };
-    script.onerror = () => {
-      console.error("Failed to load Google Maps script");
-    };
+    script.onerror = () => reject(new Error("Failed to load Google Maps script"));
     document.head.appendChild(script);
   });
 }
@@ -126,11 +134,19 @@ export function MapView({
 }: MapViewProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<google.maps.Map | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // If API key is missing, skip loading to avoid console errors and show a simple placeholder.
+  const isApiConfigured = Boolean(API_KEY);
 
   const init = usePersistFn(async () => {
+    if (!isApiConfigured) {
+      setLoadError("지도 API 키가 설정되지 않았습니다.");
+      return;
+    }
     await loadMapScript();
     if (!mapContainer.current) {
-      console.error("Map container not found");
+      setLoadError("Map container not found");
       return;
     }
     map.current = new window.google.maps.Map(mapContainer.current, {
@@ -148,12 +164,90 @@ export function MapView({
   });
 
   useEffect(() => {
-    init();
+    init().catch((err) => {
+      console.error(err);
+      setLoadError("Google Maps 로드를 실패했습니다.");
+    });
   }, [init]);
+
+  if (!isApiConfigured || loadError) {
+    return (
+      <div className={cn("w-full h-[320px] bg-muted/50 flex items-center justify-center text-sm text-muted-foreground rounded-xl border border-dashed border-border", className)}>
+        지도는 상담 시 별도 안내드립니다.
+      </div>
+    );
+  }
 
   return (
     <div ref={mapContainer} className={cn("w-full h-[500px]", className)} />
   );
 }
 
-export default MapView;
+export default function Map() {
+  return (
+    <section className="py-16 bg-gray-50 border-t border-gray-200">
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mx-auto">
+            {/* 문의 정보 */}
+            <div>
+              <h3 className="text-3xl font-bold mb-8 text-gray-900 text-center">문의 정보</h3>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary-600 font-bold text-xl">📞</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">전화</h4>
+                    <p className="text-gray-600">0504-401-5339</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary-600 font-bold text-xl">✉️</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">이메일</h4>
+                    <div className="text-gray-600">
+                      <p>docdoc7@naver.com</p>
+                      <p>withwinbiz@gmail.com</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary-600 font-bold text-xl">🔗</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">웹사이트</h4>
+                    <a
+                      href="https://withwinbiz.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-600 hover:text-primary-700 transition-colors cursor-pointer"
+                    >
+                      withwinbiz.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 rounded-lg p-6 mt-8">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-2xl">💡</span>
+                    <h4 className="font-semibold text-gray-900">참고</h4>
+                  </div>
+                  <p className="text-gray-600">
+                    온라인 미팅으로 전국 어디서나 협업 가능합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            </div>
+        </div>
+      </div>
+    </section>
+  );
+}

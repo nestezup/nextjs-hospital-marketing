@@ -44,28 +44,72 @@ export default function CRMSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">환자 관리 CRM</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 text-center">환자 관리 CRM</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               환자 한 명 한 명의 여정을 추적하고, 적절한 타이밍에 소통하며,<br />
               재방문율을 높이는 스마트한 CRM 시스템을 제공합니다.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {features.map((feature, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardHeader>
-                  <feature.icon className="h-12 w-12 text-primary mb-3" />
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                  <CardDescription className="text-base">
-                    {feature.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
+          <Card className="bg-white border border-gray-200 shadow-sm">
+            <CardContent className="p-8 space-y-8">
+              <h3 className="text-2xl font-bold text-gray-900 text-center">환자 여정 → 자동화 → 성과 (한 눈에 보기)</h3>
 
-          <Card className="bg-gradient-to-br from-primary to-secondary text-white">
+              {/* Flow chips with connectors - 3 items per row */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {features.map((feature, idx) => (
+                  <div key={feature.title} className="flex items-center justify-center">
+                    <div className="flex items-center gap-3 bg-primary-50 border border-primary-100 rounded-full px-4 py-3 shadow-sm w-full">
+                      <feature.icon className="h-5 w-5 text-primary flex-shrink-0" />
+                      <div className="text-left">
+                        <div className="text-sm font-semibold text-primary-800">{feature.title}</div>
+                        <div className="text-xs text-gray-600 leading-snug">
+                          {feature.description}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card className="bg-gradient-to-br from-primary-50 to-white h-full border-primary/20">
+                  <CardHeader>
+                    <CardTitle className="text-lg text-primary-800">여정 추적 & 메시지</CardTitle>
+                    <CardDescription className="text-sm text-gray-600">첫 상담 → 수술 → 사후 관리까지 자동 안내</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-sm text-gray-700">
+                    <div className="flex gap-2"><span className="text-primary">•</span>환자 여정 관리</div>
+                    <div className="flex gap-2"><span className="text-primary">•</span>자동 메시지 발송</div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-br from-secondary-50 to-white h-full border-secondary/20">
+                  <CardHeader>
+                    <CardTitle className="text-lg text-secondary-800">재방문 & 리뷰 자동화</CardTitle>
+                    <CardDescription className="text-sm text-gray-600">재방문 알림과 만족도 높은 시점에 리뷰 요청</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-sm text-gray-700">
+                    <div className="flex gap-2"><span className="text-secondary-600">•</span>재방문 관리</div>
+                    <div className="flex gap-2"><span className="text-secondary-600">•</span>리뷰 요청 자동화</div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-br from-accent-50 to-white h-full border-accent/30">
+                  <CardHeader>
+                    <CardTitle className="text-lg text-amber-800">실시간 데이터 & 개인화</CardTitle>
+                    <CardDescription className="text-sm text-gray-600">유입·전환을 즉시 확인하고 맞춤 메시지 발송</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-sm text-gray-700">
+                    <div className="flex gap-2"><span className="text-amber-600">•</span>실시간 대시보드</div>
+                    <div className="flex gap-2"><span className="text-amber-600">•</span>맞춤형 마케팅</div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-primary-50 to-secondary-50 text-gray-900 border border-gray-200">
             <CardContent className="p-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
@@ -85,7 +129,7 @@ export default function CRMSection() {
                     </li>
                   </ul>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                   <h4 className="text-xl font-bold mb-4">CRM 도입 후 평균 성과</h4>
                   <div className="space-y-4">
                     <div>
@@ -93,8 +137,8 @@ export default function CRMSection() {
                         <span>재방문율</span>
                         <span className="font-bold">+35%</span>
                       </div>
-                      <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                        <div className="h-full bg-white rounded-full" style={{width: '85%'}}></div>
+                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-primary rounded-full" style={{width: '85%'}}></div>
                       </div>
                     </div>
                     <div>
@@ -102,8 +146,8 @@ export default function CRMSection() {
                         <span>리뷰 수집률</span>
                         <span className="font-bold">+50%</span>
                       </div>
-                      <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                        <div className="h-full bg-white rounded-full" style={{width: '90%'}}></div>
+                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-secondary rounded-full" style={{width: '90%'}}></div>
                       </div>
                     </div>
                     <div>
@@ -111,8 +155,8 @@ export default function CRMSection() {
                         <span>환자 만족도</span>
                         <span className="font-bold">+40%</span>
                       </div>
-                      <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                        <div className="h-full bg-white rounded-full" style={{width: '80%'}}></div>
+                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-accent rounded-full" style={{width: '80%'}}></div>
                       </div>
                     </div>
                   </div>
